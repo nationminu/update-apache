@@ -27,21 +27,60 @@ Ansible Playbook 을 이용한 자동설치
 
 ### 3.1 주요 전환 사항
 > 1. 사용 Module 확인 및 표준화(Proxy,Rewrite,SSL,Expire,Wstunnel,...)
-> 2. Listen 포트 확인 전환
-> 3. MPM 설정 확인 전환
-> 4. VirtualHost 확인 전환
-> 5. WAS 연동 설정(JKMount,Uriworkermap,...)
-> 6. 심볼릭 링크 허용(+FollowSymlink)
-> 7. 에러 처리페이지 확인(ErrorDocument))
-> 8. 기본 Charset 설정(AddDefaultCharset UTF-8,EUC-KR,Off)
-> 9. 기본 사용자,그룹 설정(User,Group)
-> 10. Third Party Module(Perl)
 ```
-#### mod_perl 컴파일
-https://perl.apache.org/download/ 다운로드
+LoadModule proxy_module /opt/jboss/httpd_2.4/modules/mod_proxy.so
+...
+```
+> 2. Listen 포트 확인 전환
+```
+Listen 80
+```
+> 3. MPM 설정 확인 전환
+```
+<mpm_worker_module>
+ThreadLimit 60
+ServerLimit 10
+StartServers 5
+MinSpareThreads 120
+MaxSpareThreads 240
+ThreadPerChild 60
+MaxRequestWorkers 600
+MaxConnectionPerChild 0
+</mpm_worker_mopdule>
+...
+> 4. VirtualHost 확인 전환
+```
+<VirtualHost *:80>
+...
+</VirtualHost>
+```
+> 5. WAS 연동 설정(JKMount,Uriworkermap,...)
+```
+JKMount /*.jsp wlb
+```
+> 6. 심볼릭 링크 허용(+FollowSymlink)
+```
+Otions ... +FollowSymlink
+```
+> 7. 에러 처리페이지 확인(ErrorDocument)
+```
+ErrorDocument 400 "[400 Error]"
+```
+> 8. 기본 Charset 설정(AddDefaultCharset UTF-8,EUC-KR,Off)
+```
+AddDefaultCharset UTF-8
+```
+> 9. 기본 사용자,그룹 설정(User,Group)
+```
+User daemon
+Group daemon
+```
+> 10. Third Party Module(Perl 컴파일)
+``` 
+# https://perl.apache.org/download/ 다운로드
 perl MakeFile.PL MP_APXS=/opt/jboss/httpd_2.4/bin/apxs MP_APR_CONFIG=/usr/local/apr/bin/apr-1-config MP_APU_CONFIG=/usr/local/apr-util/bin/apu-1-config
 make && make install
-
+# LoadModule on httpd.conf
 LoadModule perl_Module /opt/jboss/httpd_2.4/modules/mod_perl.so
 ```
 
