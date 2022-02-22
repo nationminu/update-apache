@@ -29,8 +29,7 @@ Ansible Playbook 을 이용한 자동설치
 > 1. 사용 Module 확인 및 표준화(Proxy,Rewrite,SSL,Expire,Wstunnel,...)
 ```
 LoadModule proxy_module /opt/jboss/httpd_2.4/modules/mod_proxy.so
-...
-```
+... 
 > 2. Listen 포트 확인 전환
 ```
 Listen 80
