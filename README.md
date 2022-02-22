@@ -46,7 +46,7 @@ ThreadPerChild 60
 MaxRequestWorkers 600
 MaxConnectionPerChild 0
 </mpm_worker_mopdule>
-...
+```
 > 4. VirtualHost 확인 전환
 ```
 <VirtualHost *:80>
