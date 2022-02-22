@@ -75,7 +75,17 @@ AddDefaultCharset UTF-8
 User daemon
 Group daemon
 ```
-> 10. Third Party Module(Perl 컴파일)
+
+> 10. 기본 설정(Timeout,KeepAlive,ServerToken,...)
+```
+Timeout 300
+KeepAlive On
+MaxKeepAliveTimeout 2000
+ServerTokens Prod
+...
+```
+
+> 11. Third Party Module(Perl 컴파일)
 ``` 
 # https://perl.apache.org/download/ 다운로드
 perl MakeFile.PL MP_APXS=/opt/jboss/httpd_2.4/bin/apxs MP_APR_CONFIG=/usr/local/apr/bin/apr-1-config MP_APU_CONFIG=/usr/local/apr-util/bin/apu-1-config
