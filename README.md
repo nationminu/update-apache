@@ -96,7 +96,14 @@ LoadModule perl_Module /opt/jboss/httpd_2.4/modules/mod_perl.so
 
 ### 3.2 이슈 사항
 
+> 1. Proxy HTTPS 연동시 에러 발생
 ```
+Error during SSH Handshake with remote server
+SSLProxyEngine on
+SSLProxyVerify none 
+SSLProxyCheckPeerCN off
+SSLProxyCheckPeerName off
+SSLProxyCheckPeerExpire off
 
 ```
 
