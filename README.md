@@ -34,8 +34,15 @@ Ansible Playbook 을 이용한 자동설치
 > 6. 심볼릭 링크 허용(+FollowSymlink)
 > 7. 에러 처리페이지 확인(ErrorDocument))
 > 8. 기본 Charset 설정(AddDefaultCharset UTF-8,EUC-KR,Off)
-> 9. Third Party Module(Perl)
+> 9. 기본 사용자,그룹 설정(User,Group)
+> 10. Third Party Module(Perl)
 ```
+#### mod_perl 컴파일
+https://perl.apache.org/download/ 다운로드
+perl MakeFile.PL MP_APXS=/opt/jboss/httpd_2.4/bin/apxs MP_APR_CONFIG=/usr/local/apr/bin/apr-1-config MP_APU_CONFIG=/usr/local/apr-util/bin/apu-1-config
+make && make install
+
+LoadModule perl_Module /opt/jboss/httpd_2.4/modules/mod_perl.so
 ```
 
 ### 3.2 이슈 사항
