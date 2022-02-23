@@ -115,10 +115,19 @@ SSLProxyCheckPeerExpire off
 4. 전환 서비스 확인
 
 ```
+
 ```
 
 ### 4.1 이슈 사항
-
+> 1. L4 스위치 HealthCheck 시 400 Bad Request 
 ```
+xxx.xxx.xxx.xxx - - [23/Feb/2022:09:02:26 +0900] "GET /f5.html / HTTP/1.1\n" 400 ..
+
+2.4.25, 2.2.32 버전 이후 부터 "\n" "\n\n" 등이 아닌 "\r\n"(CRLF) 만 줄바꿈으로 판단하게 됨.(HttpProtocolOptions Strict)
+
+- httpd.conf 의 옵션 추가하여 해결
+HttpProtocolOptions Unsafe
+
+* referer : https://httpd.apache.org/docs/2.4/mod/core.html#httpprotocoloptions
 ```
 
